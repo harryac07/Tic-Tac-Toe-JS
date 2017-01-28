@@ -1,0 +1,41 @@
+
+body{
+	background-color: #000000;
+}
+h1{
+	color:#fff;
+	text-shadow: 2px 1px #cf0000;
+}
+.well{
+	height: 450px;
+	margin-left: 350px;
+	margin-right: 350px;
+}
+.col-sm-4{
+	background-color: white;
+	height:133px;
+	border:3px solid black;
+	margin:0;
+}
+.row{
+	margin: 0;
+}
+
+@media screen and (max-width: 480px) {
+
+	.well{
+		height: auto;
+		width: 100%;
+		margin:0;
+	}
+	.col-sm-4{
+		background-color: white;
+		height:80px;
+		width:33%;
+		border:3px solid black;
+		margin:0;
+	}
+	.row{
+		margin: 0;
+	}
+}
