@@ -15,7 +15,12 @@ $(document).ready(function() {
 	var field7;
 	var field8;
 	var field9;
-
+	var gameOver = false;
+	var win = 0;
+	var loss = 0;
+	var draw = 0;
+	/* set win,loss and draw to 0; */
+	$("#loss, #win, #draw").html('0');
 	count = 0;
 
 	/* handling click for human or user */
@@ -138,11 +143,13 @@ $(document).ready(function() {
 	});
 
 	/* generating random for computer */
+	var Random;
+
 	function randomize() {
 
 		var Found = false; // check if found the place to put value O
-		while (Found != true) {
-			var Random = Math.floor(Math.random() * 9) + 1; // generate random number 1-9
+		while (Found != true && gameOver != true) {
+			Random = Math.floor(Math.random() * 9) + 1; // generate random number 1-9
 			if (Random == 1 && field1 != "X" && field1 != "O") {
 				field1 = "O";
 				$('#field1').css({
@@ -299,7 +306,7 @@ $(document).ready(function() {
 			defeat();
 		}
 		if (count == 9) {
-			draw();
+			drawGame();
 
 		}
 	} /* function check victory ends here*/
@@ -316,39 +323,71 @@ $(document).ready(function() {
 		field7 = 0;
 		field8 = 0;
 		field9 = 0;
-		$('#field1').css('background-image','');
-		$('#field2').css('background-image','');
-		$('#field3').css('background-image','');
-		$('#field4').css('background-image','');
-		$('#field5').css('background-image','');
-		$('#field6').css('background-image','');
-		$('#field7').css('background-image','');
-		$('#field8').css('background-image','');
-		$('#field9').css('background-image','');
+		$('#field1').css('background-image', '');
+		$('#field2').css('background-image', '');
+		$('#field3').css('background-image', '');
+		$('#field4').css('background-image', '');
+		$('#field5').css('background-image', '');
+		$('#field6').css('background-image', '');
+		$('#field7').css('background-image', '');
+		$('#field8').css('background-image', '');
+		$('#field9').css('background-image', '');
 		count = 0;
+
+		/* remove game status and some classes on it after 2 sec */
+		setTimeout(function() {
+			$("#status").html('');
+			$("#status").removeClass('alert-success alert-info alert-warning');
+		}, 2000);
+
 	}
 
 	/* When it is draw */
-	function draw() {
-		alert('It is Draw! Try again');
+	function drawGame() {
+		// alert('It is Draw! Try again');
+		$("#status").addClass('alert-info');
+		$("#status").html('It is Draw! Try again');
 		reset();
+		draw++;
+		$("#draw").html(draw);
 
 	}
 	/* when human or you win */
 	function victory() {
-		alert('Cheers! You win!');
+		// alert('Cheers! You win!');
+		$("#status").addClass('alert-success');
+		$("#status").html('Cheers! You win!');
 		reset();
-		
+		win++;
+		$("#win").html(win);
+		gameOver=true;
+		setTimeout(function() {
+			gameOver = false;
+		}, 200);
+
 	}
 	/* when computer wins */
 	function defeat() {
-		alert("You lost! Try Again");
+		// alert("You lost! Try Again");
+		$("#status").addClass('alert-warning');
+		$("#status").html('You lost! Try Again');
 		reset();
-		
+		loss++;
+		$("#loss").html(loss);
+
 	}
-	function playAgain(){
-		
+
+	function playAgain() {
+		reset();
+		win = 0;
+		loss = 0;
+		draw = 0;
+		count = 0;
+		$("#loss, #win, #draw").html('0');
 	}
+	$("#reset").click(function() {
+		playAgain();
+	});
 
 
 });

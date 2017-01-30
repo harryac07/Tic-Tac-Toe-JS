@@ -21,7 +21,13 @@
 <body>
 
 	<div class="container-fluid">
-		<h1 class="text-center">Lets Play Tic-Tac-Toe</h1>
+		<h1 class="text-center">Lets Play</h1>
+		
+		<center>
+			<span id="status" class="alert" style="border:none;font-size:25px;padding:5px">
+		  	
+			</span>
+		</center>
 		<br>
 		<div class="well">
 			<div class="row"> <!--first row-->
@@ -58,6 +64,17 @@
 				</div>
 			</div>
 		</div>
+		<div id="result" class="text-center">
+			<h3 >Win : <span id="win"></span></h3>
+			<h3 >Loss : <span id="loss"></span></h3>
+			<h3 >Draw : <span id="draw"></span></h3>
+		</div>
+		<center><button class="btn btn-primary" id="reset"> Reset </button></center>
+		<br>
+		<!--footer-->
+		<footer>
+			<p>Copyright, <span class="glyphicon glyphicon-copyright-mark"></span>  <a href="http://users.metropolia.fi/~haria/" target="blank" >Haria</a> </p>
+		</footer>
 	</div>
 </body>
 </html>
